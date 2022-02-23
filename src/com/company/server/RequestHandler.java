@@ -47,7 +47,8 @@ public class RequestHandler implements Runnable {
     public Request getRequest() throws IOException {
         in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 
-        return RequestBuilder.build(in);
+        return null;
+        //return RequestBuilder.build(in);
     }
 
     public void sendResponse(Response response) throws IOException {

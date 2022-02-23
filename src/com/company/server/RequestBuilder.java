@@ -9,15 +9,24 @@ import java.util.regex.Pattern;
 
 public class RequestBuilder {
 
-    public static Request build(BufferedReader in) throws IOException {
+    public RequestBuilder(){
+
+    }
+
+    public Request build(BufferedReader in) {
+        Request request = new Request();
+        try {
         StringBuilder builder = new StringBuilder();
 
         String inputLine;
-        while ((inputLine = in.readLine()) != null && !inputLine.equals("")) {
+        while (true) {
+
+                if (!((inputLine = in.readLine()) != null && !inputLine.equals(""))) break;
+
             builder.append(inputLine + "\n");
         }
 
-        Request request = new Request();
+
         String header = builder.toString();
 
         parseHeader(request, header);
@@ -30,6 +39,10 @@ public class RequestBuilder {
         int read = in.read(content, 0, content.length);
 
         request.setContent(new String(content));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         return request;
     }

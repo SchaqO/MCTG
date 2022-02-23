@@ -1,36 +1,50 @@
 package com.company.database;
 
-/*
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.Statement;
 import java.sql.SQLException;
 
-public class DatabaseConnection implements DatabaseConnectionInterface {
+public class DatabaseConnection {
 
-    Connection c = null;
-    Statement stmt = null;
+
+
+    private static final String USER = "postgres";
+    private static final String PASS = "postgres";
+    private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
+
+    private static DatabaseConnection instance = null;
+    protected Connection connection;
+
+    public DatabaseConnection(){
         try {
-        Class.forName("org.postgresql.Driver");
-        c = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "Shakoshako11");
-        System.out.println("Opened database succesfully");
-
-        stmt = c.createStatement();
-        String sql = "CREATE TABLE COMPANY " +
-                "(ID INT PRIMARY KEY     NOT NULL," +
-                " NAME           TEXT    NOT NULL, " +
-                " AGE            INT     NOT NULL, " +
-                " ADDRESS        CHAR(50), " +
-                " SALARY         REAL)";
-        stmt.executeUpdate(sql);
-        stmt.close();
-        c.close();
-    } catch (Exception e ) {
-        e.printStackTrace();
-        System.err.println(e.getClass().getName()+": "+e.getMessage());
-        System.exit(0);
+            Class.forName("org.postgresql.Driver");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        start();
     }
-        System.out.println("Table created successfully");
+
+    public void start() {
+        try {
+            connection = DriverManager.getConnection(DB_URL, USER, PASS);
+            System.out.println("CONNECTED - SUCCESS");
+        } catch (SQLException e) {
+            System.out.println("CONNECTED - FAILED");
+        }
+    }
+
+
+    public static DatabaseConnection getInstance() {
+        if(DatabaseConnection.instance == null) {
+            DatabaseConnection.instance = new DatabaseConnection();
+        }
+        return DatabaseConnection.instance;
+    }
+
+    static {
+        DatabaseConnection.instance = new DatabaseConnection();
+    }
+
 
 }
-*/
