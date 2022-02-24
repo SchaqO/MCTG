@@ -5,17 +5,12 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+
+/** FERTIG **/
 public class ServerPort implements Runnable{
 
     private int port = 10001;
     private ServerSocket listen;
-
-   // private SocketInterface application;
-
-    public ServerPort () {
-      //  this.application = application;
-    }
-
 
     public void start() {
             try {
@@ -26,7 +21,7 @@ public class ServerPort implements Runnable{
 
         while(true) {
             Socket currentClient = listen.accept();
-            Thread thread = new Thread(() -> new Handler(currentClient));
+            Thread thread = new Thread(() -> new Router(currentClient));
             thread.start();
 
         }
