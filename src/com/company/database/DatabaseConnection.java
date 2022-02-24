@@ -14,7 +14,7 @@ public class DatabaseConnection {
     private static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
 
     private static DatabaseConnection instance = null;
-    protected Connection connection;
+    protected Connection connection = null;
 
     public DatabaseConnection(){
         try {
@@ -34,6 +34,10 @@ public class DatabaseConnection {
         }
     }
 
+
+    public Connection getConnection() {
+        return connection;
+    }
 
     public static DatabaseConnection getInstance() {
         if(DatabaseConnection.instance == null) {

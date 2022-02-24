@@ -4,27 +4,13 @@ import com.company.model.card.CardElement;
 import com.company.model.card.CardName;
 import com.company.model.card.CardType;
 
-public class MonsterCard {
+public class MonsterCard extends AbstractCard {
 
-    private String cardID;
-    private CardName cardName;
-    private int cardDmg;
-    private CardElement cardElement;
-    private CardType cardType;
+    CardType cardType;
 
-    public CardType getCardType(){
-        return cardType;
-    }
 
-    public MonsterCard(String cardID, CardName cardName, int cardDmg, CardElement cardElement, CardType cardType){
-        this.cardID = cardID;
-        this.cardName = cardName;
-        this.cardDmg = cardDmg;
-        this.cardElement = cardElement;
-        this.cardType = cardType;
-    }
-
-    public MonsterCard(){
+    public MonsterCard(String cardID, CardName cardName, int cardDmg, CardElement cardElement) {
+        super(cardID, cardName, cardDmg, cardElement);
         this.cardType = CardType.MONSTER;
     }
 }

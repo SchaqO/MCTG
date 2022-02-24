@@ -14,17 +14,19 @@ public class ServerPort implements Runnable{
 
     public void start() {
             try {
-        InetAddress bindAddr = InetAddress.getByName("localhost");
-        System.out.println("Server start...");
-        listen = new ServerSocket(port, 5,bindAddr);
-        System.out.println("Server running at: http://localhost: " + port);
+                    InetAddress bindAddr = InetAddress.getByName("localhost");
+                    listen = new ServerSocket(port, 5,bindAddr);
+                    System.out.println("Server listen on port " + port + " ...");
 
-        while(true) {
-            Socket currentClient = listen.accept();
-            Thread thread = new Thread(() -> new Router(currentClient));
-            thread.start();
 
-        }
+
+                    while(true) {
+                        Socket currentClient = listen.accept();
+                        //2.
+                        Thread thread = new Thread(() -> new Router(currentClient));
+                        thread.start();
+
+                    }
 
         } catch (IOException e){
                 e.printStackTrace();

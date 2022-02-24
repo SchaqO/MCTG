@@ -4,9 +4,20 @@ public class Request {
 
     private String method;
     private String route;
-    private String content;
+    private String body;
+    private String auth = "";
     private String contentType;
     private int contentLength;
+
+    public String getAuth() {
+        return auth;
+    }
+
+    public void setAuth(String auth) {
+        this.auth = auth;
+    }
+
+
 
     public String getMethod() {
         return method;
@@ -24,12 +35,12 @@ public class Request {
         this.route = route;
     }
 
-    public String getContent() {
-        return content;
+    public String getBody() {
+        return body;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setBody(String body) {
+        this.body = body;
     }
 
     public String getContentType() {
@@ -47,6 +58,7 @@ public class Request {
     public void setContentLength(int contentLength){
         this.contentLength = contentLength;
     }
+
 
 
 
