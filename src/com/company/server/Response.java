@@ -12,7 +12,7 @@ public class Response {
 
     public Response() {
         setStatus(HttpStatus.OK);
-        setContent("TEST0");
+        setContent("TEST");
         contentType = "text/html";
         content = "<!DOCTYPE html><html><body><h1>Hello World!</h1></body></html>";
     }
