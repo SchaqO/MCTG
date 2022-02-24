@@ -1,4 +1,4 @@
-package com.company.Game;
+package com.company.model.card;
 
 public enum CardType {
     MONSTER,

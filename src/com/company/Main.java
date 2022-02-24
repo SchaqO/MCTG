@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.database.DatabaseConnection;
+import com.company.model.User;
 import com.company.server.ServerPort;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ public class Main {
 
     public static void main(String[] args) throws SQLException {
 
+
         /*
         ServerPort server = new ServerPort(new game());
         try {
@@ -17,9 +19,9 @@ public class Main {
         } catch (IOException e) {
             e.printStackTrace();
         }*/
-        DatabaseConnection con = DatabaseConnection.getInstance();
-        Thread server = new Thread((Runnable) new ServerPort());
-        server.start();
+       // DatabaseConnection con = DatabaseConnection.getInstance();
+        //Thread server = new Thread((Runnable) new ServerPort());
+       // server.start();
 
     }
 }

@@ -1,6 +1,10 @@
-package com.company.Game;
+package com.company.model.card;
 
-public class MonsterCard {
+import com.company.model.card.CardElement;
+import com.company.model.card.CardName;
+import com.company.model.card.CardType;
+
+public class SpellCard {
 
     private String cardID;
     private CardName cardName;
@@ -12,7 +16,7 @@ public class MonsterCard {
         return cardType;
     }
 
-    public MonsterCard(String cardID, CardName cardName, int cardDmg, CardElement cardElement, CardType cardType){
+    public SpellCard(String cardID, CardName cardName, int cardDmg, CardElement cardElement, CardType cardType){
         this.cardID = cardID;
         this.cardName = cardName;
         this.cardDmg = cardDmg;
@@ -20,7 +24,7 @@ public class MonsterCard {
         this.cardType = cardType;
     }
 
-    public MonsterCard(){
-        this.cardType = CardType.MONSTER;
+    public SpellCard(){
+        this.cardType = CardType.SPELL;
     }
 }
