@@ -22,8 +22,6 @@ public class RequestBuilder {
             buffer.append(inputLine + "\n");
         }
 
-            //System.out.println(buffer);
-
         String header = buffer.toString();
 
         if(header.contains("Authorization: Basic")){

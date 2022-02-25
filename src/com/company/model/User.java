@@ -4,6 +4,7 @@ package com.company.model;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.Setter;
 
 @Builder (toBuilder = true)
 public class User {
@@ -28,4 +29,16 @@ public class User {
     @SerializedName("Status")
     @Builder.Default
     private boolean status = false;
+
+
+    @Getter
+    @Setter
+    @SerializedName("stack")
+    private Stack stack;
+
+    @Getter
+    @Setter
+    @SerializedName("deck")
+    private Deck deck;
+
 }

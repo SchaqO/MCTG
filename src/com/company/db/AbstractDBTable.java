@@ -12,6 +12,7 @@ public abstract class AbstractDBTable {
     protected PreparedStatement statement;
     protected ResultSet result;
     public String sql;
+    public String table;
 
     public void execute(){
 

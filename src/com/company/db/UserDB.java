@@ -8,7 +8,9 @@ import java.sql.SQLException;
 
 public class UserDB extends AbstractDBTable implements DbTable<User> {
 
-    public UserDB(){}
+    public UserDB(){
+        this.table = "player";
+    }
 
     //builds a class/object from the database and returns it back
     public User userBuilder(ResultSet result){
@@ -36,7 +38,7 @@ public class UserDB extends AbstractDBTable implements DbTable<User> {
     }
     @Override
     public User getItemByToken(String userToken) {
-        this.sql = "SELECT * FROM \"player\" WHERE \"userToken\" = ?;";
+        this.sql = "SELECT * FROM "+this.table+" WHERE \"userToken\" = ?;";
         try {
             this.statement = connection.prepareStatement(this.sql);
             this.statement.setString(1,userToken);
@@ -49,6 +51,25 @@ public class UserDB extends AbstractDBTable implements DbTable<User> {
         //returns DB object to java object
         return userBuilder(this.result);
     }
+
+
+    public User getItemByData(String username, String password) {
+        this.sql = "SELECT * FROM "+this.table+" WHERE \"username\" = ? AND \"password\" = ?;";
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+            this.statement.setString(1,username);
+            this.statement.setString(2,password);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        this.execute();
+
+        //returns DB object to java object
+        return userBuilder(this.result);
+    }
+
+
     @Override
     public User addItem(User item){
         this.sql = "INSERT INTO \"player\" (\"userToken\", \"username\" , \"password\" , coins, elo, status) VALUES(?,?,?,?,?,?)";

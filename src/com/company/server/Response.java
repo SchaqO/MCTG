@@ -1,7 +1,5 @@
 package com.company.server;
 
-import com.company.http.HttpStatus;
-
 public class Response {
 
     private int status;

@@ -10,5 +10,23 @@
     <orderEntry type="library" name="lombok" level="project" />
     <orderEntry type="library" name="postgresql-42.3.3" level="project" />
     <orderEntry type="library" name="gson-2.6.2" level="project" />
+    <orderEntry type="library" name="mockito-core-2.2.2" level="project" />
+    <orderEntry type="library" name="mockito-core-2.2.2-javadoc" level="project" />
+    <orderEntry type="module-library">
+      <library name="JUnit5.8.1">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/libs/junit-jupiter-5.8.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/junit-jupiter-api-5.8.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/opentest4j-1.2.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/junit-platform-commons-1.8.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/apiguardian-api-1.1.2.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/junit-jupiter-params-5.8.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/junit-jupiter-engine-5.8.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/libs/junit-platform-engine-1.8.1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>

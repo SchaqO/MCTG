@@ -1,7 +1,7 @@
 package com.company.server;
 
 
-import com.company.control.UserControl;
+import com.company.control.*;
 import com.company.model.User;
 
 import java.io.*;
@@ -24,31 +24,47 @@ public class Router {
 
     //8. Gets redirected to Usercontrol or generally, Control methods.
     Response post(Request request){
+
         switch (request.getRoute()){
             case "/users": return new UserControl().post(request);
-            case "/session": return new UserControl().post(request);
+            case "/sessions": return new SessionControl().post(request);
+            case "/packages": return new PackageControl().post(request);
             case "/transactions/packages": return new UserControl().post(request);
             case "/tradings": return new UserControl().post(request);
+            case "/battles": return new BattleControl().post(request);
 
         }
         return new Response(404,"NOT FOUND", "ERROR");
     }
     Response get(Request request){
+        if(request.getRoute().contains("/users/")){
+            return new ProfileControl().get(request);
+        }
+
         switch (request.getRoute()){
-            case "/users": System.out.println("Hello world");
-          //  case "/cards": return new CardsControl().get(request);
+            case "/cards": return new CardControl().get(request);
+            case "/deck": return new DeckControl().get(request);
+            case "/stats": return new StatControl().get(request);
+            case "/score": return new ScoreControl().get(request);
+            case "/tradings": return new TradingControl().get(request);
         }
         return new Response(404,"NOT FOUND", "ERROR");
     }
     Response delete(Request request){
         switch (request.getRoute()){
             case "/users": return new UserControl().post(request);
+            case "/tradings": return new TradingControl().delete(request);
         }
         return new Response(404,"NOT FOUND", "ERROR");
     }
     Response put(Request request){
+
+        if(request.getRoute().contains("/users/")){
+            return new ProfileControl().put(request);
+        }
+
         switch (request.getRoute()){
-            case "/users": System.out.println("Hello world");
+            case "/deck": return new DeckControl().put(request);
         }
         return new Response(404,"NOT FOUND", "ERROR");
     }

@@ -2,7 +2,9 @@ package com.company.control;
 
 import com.company.control.respository.Get;
 import com.company.control.respository.Post;
+import com.company.db.ProfileDB;
 import com.company.db.UserDB;
+import com.company.model.Profile;
 import com.company.model.User;
 import com.company.server.Request;
 import com.company.server.Response;
@@ -24,6 +26,11 @@ public class UserControl implements Post, Get {
         // BODY --> JSON <-> JAVA OBJ
 
         User jsonUser = gson.fromJson(request.getBody(), User.class);
+
+        if(jsonUser == null){
+            return new Response(400,"BAD","FAILED");
+        }
+
         User newUser = User.builder()
                 .userToken(jsonUser.getUsername()+"-mtcgToken")
                 .username(jsonUser.getUsername())
@@ -43,6 +50,12 @@ public class UserControl implements Post, Get {
         if(userDB.addItem(newUser) == null){
             return new Response(400,"BAD","FAILED");
         }else{
+            Profile profile = Profile.builder()
+                    .userToken(newUser.getUserToken())
+                    .name(newUser.getUsername())
+                    .build();
+            ProfileDB profileDB = new ProfileDB();
+            profileDB.addItem(profile);
             return new Response(200,"OK","Create account");
         }
 
@@ -50,15 +63,7 @@ public class UserControl implements Post, Get {
 
     @Override
     public Response get(Request request) {
-
-        request.getBody();
-        System.out.println(request.getBody());
-        //gson.fromJson("{}",User.class);
-        User newUser = gson.fromJson(request.getBody(), User.class);
-
-        System.out.println(newUser.getUsername());
-        System.out.println("test");
-        return null;
+        return new Response(400,"BAD","FAILED");
     }
 
 }
