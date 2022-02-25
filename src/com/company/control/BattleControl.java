@@ -7,7 +7,7 @@ import com.company.server.Response;
 public class BattleControl implements Post {
     @Override
     public Response post(Request request) {
-        return new Response(400,"BAD","EMPTY");
+        return new Response(400,"BAD","Show battle here");
 
     }
 

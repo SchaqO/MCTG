@@ -7,6 +7,18 @@ public class Response {
     private String contentType;
     private String content;
 
+    public int getStatus() {
+        return status;
+    }
+
+    public String getReasonPhrase() {
+        return reasonPhrase;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
     public Response(int status, String reasonPhrase, String message) {
         this.content = message;
         this.status = status;
@@ -14,6 +26,9 @@ public class Response {
         contentType = "application/json";
     }
 
+    public String getContentType() {
+        return contentType;
+    }
 
     @Override
     public String toString() {

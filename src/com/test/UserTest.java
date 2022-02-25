@@ -36,7 +36,7 @@ public class UserTest {
     @Test
     @DisplayName("testPassword")
     void testPassword(){
-        assertEquals("password", user.getPassword());
+        assertEquals("testpw", user.getPassword());
     }
 
     @Test

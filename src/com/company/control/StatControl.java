@@ -19,7 +19,7 @@ public class StatControl implements Get {
         User user = userDB.getItemByToken(request.getAuth());
 
         if(user == null){
-            return new Response(400,"BAD","NO USER");
+            return new Response(400,"BAD","Show Stats here");
         }else{
             return new Response(200,"OK",user.isStatus()+"");
         }

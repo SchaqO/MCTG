@@ -28,7 +28,7 @@ public class UserControl implements Post, Get {
         User jsonUser = gson.fromJson(request.getBody(), User.class);
 
         if(jsonUser == null){
-            return new Response(400,"BAD","FAILED");
+            return new Response(400,"BAD","OK");
         }
 
         User newUser = User.builder()

@@ -20,13 +20,13 @@ public class TradingControl implements Get, Post, Delete {
     @Override
     public Response get(Request request) {
         request.getAuth();
-        return new Response(200,"OK","Create account");
+        return new Response(200,"OK","Trade deal checked");
     }
 
     @Override
     public Response delete(Request request) {
         request.getAuth();
-        return new Response(200,"OK","Create account");
+        return new Response(200,"OK","Trade deleted");
     }
 
 

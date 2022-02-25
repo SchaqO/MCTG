@@ -19,7 +19,7 @@ public class ScoreControl implements Get {
         User user = userDB.getItemByToken(request.getAuth());
 
         if(user == null){
-            return new Response(400,"BAD","EMPTY");
+            return new Response(400,"BAD","Show score here");
         }else{
             return new Response(200,"OK",user.getElo()+"");
         }

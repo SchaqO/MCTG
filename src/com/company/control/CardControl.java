@@ -12,6 +12,6 @@ public class CardControl implements Get {
     @Override
     public Response get(Request request) {
         request.getAuth();
-        return new Response(200,"OK","Create account");
+        return new Response(200,"OK","Cards");
     }
 }

@@ -31,6 +31,6 @@ public class ProfileControl implements Get, Put{
     public Response put(Request request) {
         request.getAuth();
         //System.out.println(request.getBody());
-        return new Response(200,"OK","Create account");
+        return new Response(200,"OK","User edited");
     }
 }

@@ -12,7 +12,7 @@ public class PackageControl implements Post, Get {
     public Response post(Request request) {
 
         if(!request.getAuth().equals("admin-mtcgToken")){
-            return new Response(400,"BAD","NOT ALLOWED");
+            return new Response(400,"BAD","Created");
         };
 
 

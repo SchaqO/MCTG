@@ -16,13 +16,13 @@ public class DeckControl implements Get, Put {
     @Override
     public Response get(Request request) {
         request.getAuth();
-        return new Response(200,"OK","Create account");
+        return new Response(200,"OK","Show cards here");
     }
 
     @Override
     public Response put(Request request) {
         request.getAuth();
-        return new Response(200,"OK","Create account");
+        return new Response(200,"OK","Configure Deck");
     }
 
 }
