@@ -92,4 +92,206 @@
 ## GitHub Link
 https://github.com/SchaqO/MCTG
   
+## Git Log
+    $ git log
+    commit 42996331a98ebe3a1521dc5d72dcabcad0f381cf (HEAD -> master, origin/master)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 14:34:44 2022 +0100
+    
+        Worked on controls for CURL
+    
+    commit a650363e055f575667b84381c265c923ef8d8765
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:11:52 2022 +0100
+    
+        added some files
+    
+    commit 06c2a1d2b0c21ccb8857a50e3fe6a52714836589
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:09:22 2022 +0100
+    
+        created a readme
+    
+    commit 6ff1764d0a1f43ac96e1ced4130bd83ad93da14f
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 05:21:30 2022 +0100
+    
+        Unit Tests added
+    :...skipping...
+    commit 42996331a98ebe3a1521dc5d72dcabcad0f381cf (HEAD -> master, origin/master)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 14:34:44 2022 +0100
+    
+        Worked on controls for CURL
+    
+    commit a650363e055f575667b84381c265c923ef8d8765
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:11:52 2022 +0100
+    
+        added some files
+    
+    commit 06c2a1d2b0c21ccb8857a50e3fe6a52714836589
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:09:22 2022 +0100
+    
+        created a readme
+    
+    commit 6ff1764d0a1f43ac96e1ced4130bd83ad93da14f
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 05:21:30 2022 +0100
+    
+        Unit Tests added
+    
+    commit bbd6f9e9f5b6a51ab560858da17a139706b5773a
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 04:42:30 2022 +0100
+    
+        Some more progress
+    
+    commit 590a7527856edf8b10d5032079463e9102ad6364 (db)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 22:00:17 2022 +0100
+    
+    :...skipping...
+    commit 42996331a98ebe3a1521dc5d72dcabcad0f381cf (HEAD -> master, origin/master)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 14:34:44 2022 +0100
+    
+        Worked on controls for CURL
+    
+    commit a650363e055f575667b84381c265c923ef8d8765
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:11:52 2022 +0100
+    
+        added some files
+    
+    commit 06c2a1d2b0c21ccb8857a50e3fe6a52714836589
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:09:22 2022 +0100
+    
+        created a readme
+    
+    commit 6ff1764d0a1f43ac96e1ced4130bd83ad93da14f
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 05:21:30 2022 +0100
+    
+        Unit Tests added
+    
+    commit bbd6f9e9f5b6a51ab560858da17a139706b5773a
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 04:42:30 2022 +0100
+    
+        Some more progress
+    
+    commit 590a7527856edf8b10d5032079463e9102ad6364 (db)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 22:00:17 2022 +0100
+    
+        V1.1
+    
+    commit 9bb54cd811784281d5e208fb58efa7c16492a351 (model)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 18:42:25 2022 +0100
+    
+        DB progress
+    
+    commit 2eb7bab78fb9a2fcd9eb633251d266a1177b77f8
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 17:35:55 2022 +0100
+    
+        User model completed
+    
+    commit 3bb7af416d1a751c2758f6ec0af83a1dca9e44b5
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 17:11:45 2022 +0100
+    
+        V1.0
+    
+    commit 43e475b5832d33f4b2eac6cd79a4171efb8e969d
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Wed Feb 23 23:12:39 2022 +0100
+    
+        server finally done
+    
+    commit cb0e1a2f6450a7d0fe27f7d3381c0108f0dc9cb5
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Wed Feb 23 14:57:27 2022 +0100
+    
+        some rest api implementation progress
+    
+    commit 04549b30630aebb08fda3145e4c0cb25209e63d9
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Tue Feb 22 20:17:30 2022 +0100
+    
+    :
+    commit 42996331a98ebe3a1521dc5d72dcabcad0f381cf (HEAD -> master, origin/master)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 14:34:44 2022 +0100
+    
+        Worked on controls for CURL
+    
+    commit a650363e055f575667b84381c265c923ef8d8765
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:11:52 2022 +0100
+    
+        added some files
+    
+    commit 06c2a1d2b0c21ccb8857a50e3fe6a52714836589
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 06:09:22 2022 +0100
+    
+        created a readme
+    
+    commit 6ff1764d0a1f43ac96e1ced4130bd83ad93da14f
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 05:21:30 2022 +0100
+    
+        Unit Tests added
+    
+    commit bbd6f9e9f5b6a51ab560858da17a139706b5773a
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Fri Feb 25 04:42:30 2022 +0100
+    
+        Some more progress
+    
+    commit 590a7527856edf8b10d5032079463e9102ad6364 (db)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 22:00:17 2022 +0100
+    
+        V1.1
+    
+    commit 9bb54cd811784281d5e208fb58efa7c16492a351 (model)
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 18:42:25 2022 +0100
+    
+        DB progress
+    
+    commit 2eb7bab78fb9a2fcd9eb633251d266a1177b77f8
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 17:35:55 2022 +0100
+    
+        User model completed
+    
+    commit 3bb7af416d1a751c2758f6ec0af83a1dca9e44b5
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Thu Feb 24 17:11:45 2022 +0100
+    
+        V1.0
+    
+    commit 43e475b5832d33f4b2eac6cd79a4171efb8e969d
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Wed Feb 23 23:12:39 2022 +0100
+    
+        server finally done
+    
+    commit cb0e1a2f6450a7d0fe27f7d3381c0108f0dc9cb5
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Wed Feb 23 14:57:27 2022 +0100
+    
+        some rest api implementation progress
+    
+    commit 04549b30630aebb08fda3145e4c0cb25209e63d9
+    Author: SchaqO <shako-1998@hotmail.com>
+    Date:   Tue Feb 22 20:17:30 2022 +0100
+
  
