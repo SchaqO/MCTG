@@ -32,7 +32,7 @@
 
 
 
-## Spiel Anleitung
+## Game logic
 
     Your cards are split into 2 categories:
     • monster cards
