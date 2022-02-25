@@ -21,7 +21,5 @@ public class CardElementTest {
         Assertions.assertEquals(com.company.model.card.CardElement.WATER, cardElement2);
         Assertions.assertEquals(com.company.model.card.CardElement.NORMAL, cardElement3);
 
-
-
     }
 }
