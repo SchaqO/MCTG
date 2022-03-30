@@ -1,9 +1,8 @@
 package com.company.control;
 
-import com.company.control.respository.Get;
 import com.company.control.respository.Post;
 import com.company.db.*;
-import com.company.model.Package;
+import com.company.model.Packages;
 import com.company.model.User;
 import com.company.server.Request;
 import com.company.server.Response;
@@ -22,7 +21,7 @@ public class TransactionControl implements Post {
         TransactionDB tradingDB = new TransactionDB();
         PackageDB packageDB = new PackageDB();
         User user = userDB.getItemByToken(request.getAuth());
-        Package pack = packageDB.getItemByToken(tradingDB.getFirstItem());
+        Packages pack = packageDB.getItemByToken(tradingDB.getFirstItem());
         StackDB stackDB = new StackDB();
 
 

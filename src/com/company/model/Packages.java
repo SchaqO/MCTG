@@ -1,15 +1,12 @@
 package com.company.model;
 
-import com.company.model.card.AbstractCard;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Builder;
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 @Builder(toBuilder = true)
-public class Package {
+public class Packages {
     @Getter
     @SerializedName("id")
     private String id;

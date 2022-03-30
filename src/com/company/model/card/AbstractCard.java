@@ -18,6 +18,9 @@ public abstract class AbstractCard {
     @SerializedName("cardElement")
     private CardElement cardElement;
 
+    @Getter
+    private CardType cardtype;
+
     public AbstractCard(String cardID, CardName cardName, int cardDmg, CardElement cardElement){
         this.cardID = cardID;
         this.cardName = cardName;

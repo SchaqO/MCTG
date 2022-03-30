@@ -1,8 +1,5 @@
-package com.company.db;import com.company.db.repository.DbTable;
-import com.company.model.Package;
-import com.company.model.Trade;
+package com.company.db;
 
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class TransactionDB extends AbstractDBTable {

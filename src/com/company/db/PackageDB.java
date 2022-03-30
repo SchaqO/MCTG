@@ -1,24 +1,23 @@
 package com.company.db;
 
 import com.company.db.repository.DbTable;
-import com.company.model.Package;
-import com.company.model.User;
+import com.company.model.Packages;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class PackageDB extends AbstractDBTable implements DbTable<Package> {
+public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
 
 
     public PackageDB(){
         this.table = "package";
     }
 
-    public Package packageBuilder(ResultSet result){
+    public Packages packageBuilder(ResultSet result){
 
         try {
             if(result.next()){
-                return Package.builder()
+                return Packages.builder()
                         .id(result.getString("id"))
                         .cardId1(result.getString("cardId1"))
                         .cardId2(result.getString("cardId2"))
@@ -38,7 +37,7 @@ public class PackageDB extends AbstractDBTable implements DbTable<Package> {
         return null;
     }
     @Override
-    public Package getItemByToken(String id) {
+    public Packages getItemByToken(String id) {
         this.sql = "SELECT * FROM "+this.table+ " WHERE \"id\" = ?;";
         try {
             this.statement = connection.prepareStatement(this.sql);
@@ -55,7 +54,7 @@ public class PackageDB extends AbstractDBTable implements DbTable<Package> {
 
 
     @Override
-    public Package addItem(Package item){
+    public Packages addItem(Packages item){
         this.sql = "INSERT INTO "+ this.table + " (\"id\", \"cardid1\" , \"cardid2\" , \"cardid3\", \"cardid4\", \"cardid5\") VALUES(?,?,?,?,?,?)";
         try {
             this.statement = connection.prepareStatement(this.sql);
@@ -81,7 +80,7 @@ public class PackageDB extends AbstractDBTable implements DbTable<Package> {
 
 
     @Override
-    public Package update(Package item){
+    public Packages update(Packages item){
         return null;
     }
 

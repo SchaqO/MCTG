@@ -4,6 +4,7 @@ import com.company.db.repository.DbTable;
 import com.company.model.Deck;
 import com.company.model.Stack;
 import com.company.model.card.AbstractCard;
+import com.company.model.card.CardName;
 import com.company.model.card.MonsterCard;
 
 import java.sql.ResultSet;
@@ -52,13 +53,14 @@ public class CardDB extends AbstractDBTable implements DbTable<AbstractCard> {
 
     @Override
     public AbstractCard addItem(AbstractCard item){
-        this.sql = "INSERT INTO "+ this.table + " (\"id\", \"cardid1\" , \"cardid2\" , \"cardid3\", \"cardid4\") VALUES(?,?,?,?,?,?)";
+        this.sql = "INSERT INTO "+ this.table + " (\"id\", \"cardname\" , \"carddmg\" , \"cardelement\", \"cardtype\") VALUES(?,?,?,?,?)";
         try {
             this.statement = connection.prepareStatement(this.sql);
-            //statement.setString(1,item.getUserToken());
-            //statement.setString(2,item.getCardId1());
-            //statement.setString(3,item.getCardId3());
-            //statement.setString(4,item.getCardId4());
+            statement.setString(1,item.getCardID());
+            statement.setString(2,"" + item.getCardName());
+            statement.setString(3,"" + item.getCardDmg());
+            statement.setString(4,"" + item.getCardElement());
+            statement.setString(5,"" + item.getCardtype());
 
         } catch (SQLException e) {
             e.printStackTrace();
