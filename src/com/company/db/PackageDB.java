@@ -2,6 +2,8 @@ package com.company.db;
 
 import com.company.db.repository.DbTable;
 import com.company.model.Packages;
+import com.company.model.User;
+import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Pack;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -105,6 +107,28 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
 
  */
 
+    public boolean sellPackage(String userID,String packageID){
+        Packages packages = this.getItemByToken(packageID);
+        UserDB userDB = new UserDB();
+        User currentUser = userDB.getItemByToken(userID);
+        if(packages == null){
+            return false;
+        }
+        if(currentUser == null){
+            return false;
+        }
+        if(currentUser.getCoins() < 5){
+            return false;
+        }
+
+        currentUser.setCoins(currentUser.getCoins()-5);
+
+        // TODO: 04-Apr-22 STACK Karten speichern 
+        
+        userDB.update(currentUser);
+        this.deleteItemById(packages.getId());
+        return true;
+    }
 
     public Boolean deleteItemById(String id) {
         this.sql = "DELETE FROM "+this.table+ " WHERE \"id\" = ?;";

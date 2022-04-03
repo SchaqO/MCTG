@@ -12,34 +12,29 @@ public class TransactionControl implements Post {
     @Override
     public Response post(Request request) {
 
-
         if(request.getAuth().equals("")){
             return new Response(400, "BAD", "NO TOKEN");
         }
 
-        UserDB userDB = new UserDB();
-        TransactionDB tradingDB = new TransactionDB();
+
+
         PackageDB packageDB = new PackageDB();
-        User user = userDB.getItemByToken(request.getAuth());
-        Packages pack = packageDB.getItemByToken(tradingDB.getFirstItem());
-        StackDB stackDB = new StackDB();
+        UserDB userDB = new UserDB();
 
-
-        if(user == null ){
+        if(userDB.getItemByToken(request.getAuth()) == null ){
             return new Response(400, "BAD", "NO USER");
         }
 
-        if(pack == null ){
+        // TODO: 04-Apr-22 TOKEN PACKAGE ArrayList --> mit allen PAckageIDs aus der Datenbank
+        //  PackageDB -> Arraylist getAllPackgeIDs();
+        if(packageDB.getItemByToken("123") == null ){
             return new Response(400, "BAD", "NO PACKAGE");
         }
 
-        /*
-        stackDB.addCardToStack(user.getUserToken(),pack.getCardId1());
-        stackDB.addCardToStack(user.getUserToken(),pack.getCardId2());
-        stackDB.addCardToStack(user.getUserToken(),pack.getCardId3());
-        stackDB.addCardToStack(user.getUserToken(),pack.getCardId4());
-        stackDB.addCardToStack(user.getUserToken(),pack.getCardId5());
-        packageDB.deleteItemById(pack.getId());*/
+
+        packageDB.sellPackage(request.getAuth(),"123");
+
+
         return new Response(200, "OK", "SOLD");
     }
 }

@@ -3,10 +3,12 @@ package com.company.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
 @Builder (toBuilder = true)
+@Data
 public class User {
     @Getter
     @SerializedName("userToken")
