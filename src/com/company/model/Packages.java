@@ -5,6 +5,8 @@ import lombok.Setter;
 import lombok.Builder;
 import com.google.gson.annotations.SerializedName;
 
+import java.util.ArrayList;
+
 @Builder(toBuilder = true)
 public class Packages {
     @Getter
@@ -13,26 +15,12 @@ public class Packages {
 
     @Getter
     @Setter
-    @SerializedName("cardId1")
-    private String cardId1;
+    @SerializedName("cardPackage")
+    private ArrayList<String> cardPackage;
+
 
     @Getter
-    @Setter
-    @SerializedName("cardId2")
-    private String cardId2;
-
-    @Getter
-    @Setter
-    @SerializedName("cardId3")
-    private String cardId3;
-
-    @Getter
-    @Setter
-    @SerializedName("cardId4")
-    private String cardId4;
-
-    @Getter
-    @Setter
-    @SerializedName("cardId5")
-    private String cardId5;
+    @Builder.Default
+    @SerializedName("price")
+    private int price = 5;
 }

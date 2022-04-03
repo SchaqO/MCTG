@@ -1,22 +1,27 @@
 package com.company.model.card;
 
 import com.google.gson.annotations.SerializedName;
+import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
+@Data
 public abstract class AbstractCard {
 
     @Getter
-    @SerializedName("cardID")
+    @SerializedName("Id")
     private String cardID;
     @Getter
-    @SerializedName("cardName")
+    @SerializedName("Name")
     private CardName cardName;
     @Getter
-    @SerializedName("cardDMG")
+    @SerializedName("Damage")
     private int cardDmg;
     @Getter
-    @SerializedName("cardElement")
-    private CardElement cardElement;
+    @SerializedName("Element")
+    @Builder.Default
+    private CardElement cardElement = CardElement.NORMAL;
 
     @Getter
     private CardType cardtype;

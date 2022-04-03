@@ -3,8 +3,10 @@ package com.company.model.card;
 import com.company.model.card.CardElement;
 import com.company.model.card.CardName;
 import com.company.model.card.CardType;
+import com.google.gson.annotations.SerializedName;
 
 public class MonsterCard extends AbstractCard {
+
 
     CardType cardType;
 

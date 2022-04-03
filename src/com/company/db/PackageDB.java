@@ -5,9 +5,11 @@ import com.company.model.Packages;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
 
+    private final static int packagePrice = 5;
 
     public PackageDB(){
         this.table = "package";
@@ -15,19 +17,19 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
 
     public Packages packageBuilder(ResultSet result){
 
+        ArrayList<String> currentPackage = new ArrayList<>();
+
+
         try {
             if(result.next()){
+                for(int i = 1; i < 5; i++){
+                    currentPackage.add(result.getString("cardid" + i));
+                }
                 return Packages.builder()
                         .id(result.getString("id"))
-                        .cardId1(result.getString("cardId1"))
-                        .cardId2(result.getString("cardId2"))
-                        .cardId3(result.getString("cardId3"))
-                        .cardId4(result.getString("cardId4"))
-                        .cardId5(result.getString("cardId5"))
+                        .cardPackage(currentPackage)
                         .build();
             }
-
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -36,9 +38,11 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
         this.close();
         return null;
     }
+
+
     @Override
     public Packages getItemByToken(String id) {
-        this.sql = "SELECT * FROM "+this.table+ " WHERE \"id\" = ?;";
+        this.sql = "SELECT * FROM \"package\" WHERE \"id\" = ?;";
         try {
             this.statement = connection.prepareStatement(this.sql);
             this.statement.setString(1,id);
@@ -59,12 +63,11 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
         try {
             this.statement = connection.prepareStatement(this.sql);
             statement.setString(1,item.getId());
-            statement.setString(2,item.getCardId1());
-            statement.setString(3,item.getCardId2());
-            statement.setString(4,item.getCardId3());
-            statement.setString(5,item.getCardId4());
-            statement.setString(6,item.getCardId5());
-
+            statement.setString(2,item.getCardPackage().get(0));
+            statement.setString(3,item.getCardPackage().get(1));
+            statement.setString(4,item.getCardPackage().get(2));
+            statement.setString(5,item.getCardPackage().get(3));
+            statement.setString(6,item.getCardPackage().get(4));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -84,7 +87,7 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
         return null;
     }
 
-
+/*
     public boolean deleteItemByToken(String id) {
         this.sql = "DELETE * FROM "+this.table+ " WHERE \"id\" = ?;";
         try {
@@ -99,6 +102,8 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
         //returns DB object to java object
         return true;
     }
+
+ */
 
 
     public Boolean deleteItemById(String id) {

@@ -8,41 +8,76 @@ import com.company.model.Packages;
 import com.company.model.card.*;
 import com.company.server.Request;
 import com.company.server.Response;
+import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonParser;
+import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Pack;
 
 import java.util.ArrayList;
 
 public class PackageControl implements Post, Get {
+
+    Gson gson;
+    public PackageControl() {
+        this.gson = new Gson();
+    }
+
     @Override
     public Response post(Request request) {
 
-        if(!request.getAuth().equals("admin-mtcgToken")){
-            return new Response(400,"BAD","Created");
+        if(!request.getAuth().equals("admin-mtcgToken")) {
+            return new Response(400, "BAD", "NO ADMIN");
         };
 
-        ArrayList<String> CardIdList = new ArrayList<>();
-        CardDB carddb = new CardDB();
-        for(int i = 0; i < 5; i++){
-            AbstractCard abstractCard = new MonsterCard("id", CardName.valueOf("Dragon"), Integer.valueOf("10"), CardElement.valueOf("Fire"));
-            carddb.addItem(abstractCard);
-            CardIdList.add(abstractCard.getCardID());
+        CardDB cardDB = new CardDB();
+
+        String bodyString = request.getBody();
+        JsonElement bodyElements = new JsonParser().parse(bodyString);
+        JsonArray bodyCards = bodyElements.getAsJsonArray();
+        ArrayList<AbstractCard> cardList = new ArrayList<>();
+        AbstractCard cardInsert;
+        ArrayList<String> cardIDs = new ArrayList<>();
+
+
+        for(int i = 0; i < bodyCards.size();i++){
+            cardInsert = gson.fromJson(bodyCards.get(i),MonsterCard.class);
+
+            if(cardInsert.getCardName().toString().matches("Water(.*)")){
+                cardInsert.setCardElement(CardElement.WATER);
+            }
+
+            else if(cardInsert.getCardName().toString().matches("Fire(.*)")) {
+                cardInsert.setCardElement(CardElement.FIRE);
+            }else{
+                cardInsert.setCardElement(CardElement.NORMAL);
+            }
+
+            if(cardInsert.getCardName().toString().matches("(.*)Spell(.*)")){
+                cardInsert.setCardtype(CardType.SPELL);
+            }else{
+                cardInsert.setCardtype(CardType.MONSTER);
+            }
+
+             cardList.add(cardInsert);
+             cardDB.addItem(cardInsert);
+             cardIDs.add(cardInsert.getCardID());
+
         }
-        PackageDB packagedb = new PackageDB();
+
         Packages packages = Packages.builder()
                 .id("1")
-                .cardId1(CardIdList.get(0))
-                .cardId2(CardIdList.get(1))
-                .cardId3(CardIdList.get(2))
-                .cardId4(CardIdList.get(3))
-                .cardId5(CardIdList.get(4))
+                .cardPackage(cardIDs)
                 .build();
-        packagedb.addItem(packages);
+
+
+        PackageDB packageDB = new PackageDB();
+        packageDB.addItem(packages);
 
 
 
 
-
-
-        return new Response(400,"BAD","EMPTY");
+        return new Response(400,"BAD","PACKAGE CREATED");
 
     }
 

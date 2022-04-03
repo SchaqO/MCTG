@@ -24,9 +24,12 @@ public class RequestBuilder {
 
         String header = buffer.toString();
 
-        if(header.contains("Authorization: Basic")){
-            String[] auth = header.split("Authorization: Basic");
-            request.setAuth(auth[1]);
+            //System.out.println(header);
+        if(header.contains("Authorization: Basic ")){
+            String[] auth = header.split("Authorization: Basic ");
+            request.setAuth(auth[1].replace(" ","").replace("\r","").replace("\n","@").split("@")[0]);
+
+            System.out.println(request.getAuth());
         }
 
 

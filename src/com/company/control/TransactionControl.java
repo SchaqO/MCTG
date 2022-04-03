@@ -33,13 +33,13 @@ public class TransactionControl implements Post {
             return new Response(400, "BAD", "NO PACKAGE");
         }
 
+        /*
         stackDB.addCardToStack(user.getUserToken(),pack.getCardId1());
         stackDB.addCardToStack(user.getUserToken(),pack.getCardId2());
         stackDB.addCardToStack(user.getUserToken(),pack.getCardId3());
         stackDB.addCardToStack(user.getUserToken(),pack.getCardId4());
         stackDB.addCardToStack(user.getUserToken(),pack.getCardId5());
-        packageDB.deleteItemById(pack.getId());
-
+        packageDB.deleteItemById(pack.getId());*/
         return new Response(200, "OK", "SOLD");
     }
 }
