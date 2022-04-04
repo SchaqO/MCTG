@@ -8,6 +8,7 @@ import com.company.model.Packages;
 import com.company.model.card.*;
 import com.company.server.Request;
 import com.company.server.Response;
+import com.company.util.HashGenerator;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -17,6 +18,9 @@ import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Pack;
 import java.util.ArrayList;
 
 public class PackageControl implements Post, Get {
+
+    HashGenerator hash = new HashGenerator();
+    String hashID = hash.hashString();
 
     Gson gson;
     public PackageControl() {
@@ -66,7 +70,7 @@ public class PackageControl implements Post, Get {
         }
 
         Packages packages = Packages.builder()
-                .id("1")
+                .id(hashID)
                 .cardPackage(cardIDs)
                 .build();
 

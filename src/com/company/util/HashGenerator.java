@@ -11,4 +11,10 @@ public class HashGenerator {
 
         return i;
     }
+
+    public static String hashString(){
+        hashID();
+
+        return hashID().toString();
+    }
 }
