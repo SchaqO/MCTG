@@ -2,8 +2,8 @@ package com.company.db;
 
 import com.company.db.repository.DbTable;
 import com.company.model.Packages;
+import com.company.model.Stack;
 import com.company.model.User;
-import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Pack;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +29,7 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
                 }
                 return Packages.builder()
                         .id(result.getString("id"))
-                        .cardPackage(currentPackage)
+                        .cardIdPackage(currentPackage)
                         .build();
             }
 
@@ -65,11 +65,11 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
         try {
             this.statement = connection.prepareStatement(this.sql);
             statement.setString(1,item.getId());
-            statement.setString(2,item.getCardPackage().get(0));
-            statement.setString(3,item.getCardPackage().get(1));
-            statement.setString(4,item.getCardPackage().get(2));
-            statement.setString(5,item.getCardPackage().get(3));
-            statement.setString(6,item.getCardPackage().get(4));
+            statement.setString(2,item.getCardIdPackage().get(0));
+            statement.setString(3,item.getCardIdPackage().get(1));
+            statement.setString(4,item.getCardIdPackage().get(2));
+            statement.setString(5,item.getCardIdPackage().get(3));
+            statement.setString(6,item.getCardIdPackage().get(4));
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -82,12 +82,14 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
     }
 
 
-
-
     @Override
     public Packages update(Packages item){
         return null;
     }
+
+
+
+
 
 /*
     public boolean deleteItemByToken(String id) {
@@ -111,6 +113,8 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
         Packages packages = this.getItemByToken(packageID);
         UserDB userDB = new UserDB();
         User currentUser = userDB.getItemByToken(userID);
+
+
         if(packages == null){
             return false;
         }
@@ -122,13 +126,20 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
         }
 
         currentUser.setCoins(currentUser.getCoins()-5);
-
-        // TODO: 04-Apr-22 STACK Karten speichern 
-        
         userDB.update(currentUser);
+        addCardsToUser(packages.getCardIdPackage(),userID);
         this.deleteItemById(packages.getId());
         return true;
     }
+
+
+    public void addCardsToUser(ArrayList<String> cardsID, String userID){
+        StackDB stackDB  = new StackDB();
+        for (int i = 0; i < cardsID.size(); i++){
+            stackDB.addCardToStack(userID, cardsID.get(i));
+        }
+    }
+
 
     public Boolean deleteItemById(String id) {
         this.sql = "DELETE FROM "+this.table+ " WHERE \"id\" = ?;";

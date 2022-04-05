@@ -67,16 +67,30 @@ public class StackDB extends AbstractDBTable implements DbTable<Stack> {
         return getItemByToken(item.getUserToken());
     }
 
+    public boolean deleteCardFromStack(String userToken,String cardId){
+        this.sql = "DELETE FROM "+this.table+" WHERE \"userToken\" = ? AND \"cardId\" = ?;";
 
 
-    public boolean addCardToStack(String userToken, String cardId){
-        this.sql = "INSERT INTO "+ this.table + " (\"userToken\", \"cardId\") VALUES(?,?,?,?,?,?)";
         try {
             this.statement = connection.prepareStatement(this.sql);
             statement.setString(1,userToken);
             statement.setString(2,cardId);
 
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        this.execute();
+        this.close();
 
+        return true;
+    }
+
+    public boolean addCardToStack(String userToken, String cardId){
+        this.sql = "INSERT INTO "+ this.table + " (\"userToken\", \"cardId\") VALUES(?,?)";
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+            statement.setString(1,userToken);
+            statement.setString(2,cardId);
 
         } catch (SQLException e) {
             e.printStackTrace();

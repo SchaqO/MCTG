@@ -16,7 +16,7 @@ public class Packages {
     @Getter
     @Setter
     @SerializedName("cardPackage")
-    private ArrayList<String> cardPackage;
+    private ArrayList<String> cardIdPackage;
 
 
     @Getter

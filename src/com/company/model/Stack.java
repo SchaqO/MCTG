@@ -1,6 +1,5 @@
 package com.company.model;
 
-import com.company.model.card.AbstractCard;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Getter;
@@ -19,6 +18,6 @@ public class Stack {
     @Setter
     @Builder.Default
     @SerializedName("stack")
-    private ArrayList<String> stack = new ArrayList<>();
+    private ArrayList<String> cardIdList = new ArrayList<>();
 }
 

@@ -5,7 +5,10 @@ import com.company.control.respository.Post;
 import com.company.db.CardDB;
 import com.company.db.PackageDB;
 import com.company.model.Packages;
-import com.company.model.card.*;
+import com.company.model.card.AbstractCard;
+import com.company.model.card.CardElement;
+import com.company.model.card.CardType;
+import com.company.model.card.MonsterCard;
 import com.company.server.Request;
 import com.company.server.Response;
 import com.company.util.HashGenerator;
@@ -13,7 +16,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonParser;
-import org.postgresql.shaded.com.ongres.scram.common.bouncycastle.pbkdf2.Pack;
 
 import java.util.ArrayList;
 
@@ -71,7 +73,7 @@ public class PackageControl implements Post, Get {
 
         Packages packages = Packages.builder()
                 .id(hashID)
-                .cardPackage(cardIDs)
+                .cardIdPackage(cardIDs)
                 .build();
 
 

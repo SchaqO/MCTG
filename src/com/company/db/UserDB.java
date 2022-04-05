@@ -9,7 +9,7 @@ import java.sql.SQLException;
 public class UserDB extends AbstractDBTable implements DbTable<User> {
 
     public UserDB(){
-        this.table = "player";
+        this.table = "\"player\"";
     }
 
     //builds a class/object from the database and returns it back
@@ -93,6 +93,54 @@ public class UserDB extends AbstractDBTable implements DbTable<User> {
     }
     @Override
     public User update(User item){
-        return null;
+
+        this.sql = "UPDATE " + this.table +
+                " SET " +
+                "\"userToken\" = ? ," +
+                "\"username\" = ? ," +
+                "\"password\" = ? ," +
+                "\"coins\" = ? ," +
+                "\"elo\" = ? ," +
+                "\"status\" = ? " +
+                "WHERE \"userToken\" = ?;";
+
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+            statement.setString(1,item.getUserToken());
+            statement.setString(2,item.getUsername());
+            statement.setString(3,item.getPassword());
+            statement.setString(4,item.getCoins()+"");
+            statement.setString(5,item.getElo()+"");
+            statement.setString(6,item.isStatus()+"");
+            statement.setString(7,item.getUserToken());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        this.execute();
+        this.close();
+
+        return getItemByToken(item.getUserToken());
     }
+
+
+    public boolean delete(String itemID) {
+
+        this.sql = "DELETE FROM "+this.table+" WHERE \"userToken\" = ?;";
+
+
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+            statement.setString(1,itemID);
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        this.execute();
+        this.close();
+
+        return true;
+    }
+
 }

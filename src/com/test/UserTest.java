@@ -27,6 +27,7 @@ public class UserTest {
                 .build();
     }
 
+
     @Test
     @DisplayName("testUsername")
     void testUsername(){

@@ -22,8 +22,5 @@ public class Main {
     Thread server = new Thread((Runnable) new ServerPort());
     server.start();
 
-
-
-
     }
 }
