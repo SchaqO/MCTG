@@ -6,6 +6,7 @@ import com.company.model.User;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class StackDB extends AbstractDBTable implements DbTable<Stack> {
 
@@ -100,6 +101,42 @@ public class StackDB extends AbstractDBTable implements DbTable<Stack> {
         this.close();
 
         return true;
+    }
+
+    public Stack getAllCardsFromUser(String userid){
+        UserDB userdb = new UserDB();
+        ArrayList<String> cardList = new ArrayList<>();
+        if(userdb.getItemByToken(userid) == null){
+            return null;
+        }
+
+        this.sql = "SELECT * FROM "+this.table+" WHERE \"userToken\" = ?;";
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+            this.statement.setString(1,userid);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        this.execute();
+
+
+            try {
+                while (this.result.next()){
+                    cardList.add(this.result.getString("cardId"));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+            if(cardList.size() == 0){
+                return null;
+            }
+        return Stack.builder()
+                .userToken(userid)
+                .cardIdList(cardList)
+                .build();
     }
 
 

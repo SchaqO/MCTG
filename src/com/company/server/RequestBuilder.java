@@ -29,7 +29,7 @@ public class RequestBuilder {
             String[] auth = header.split("Authorization: Basic ");
             request.setAuth(auth[1].replace(" ","").replace("\r","").replace("\n","@").split("@")[0]);
 
-            System.out.println(request.getAuth());
+            //System.out.println(request.getAuth());
         }
 
 

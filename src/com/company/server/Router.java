@@ -29,7 +29,7 @@ public class Router {
             case "/users": return new UserControl().post(request);
             case "/sessions": return new SessionControl().post(request);
             case "/packages": return new PackageControl().post(request);
-            case "/transactions/packages": return new UserControl().post(request);
+            case "/transactions/packages": return new TransactionControl().post(request);
             case "/tradings": return new UserControl().post(request);
             case "/battles": return new BattleControl().post(request);
 

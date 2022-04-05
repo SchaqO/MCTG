@@ -88,6 +88,32 @@ public class PackageDB extends AbstractDBTable implements DbTable<Packages> {
     }
 
 
+    public ArrayList<Packages> getAllPackages() {
+
+        ArrayList<Packages> list = new ArrayList<>();
+
+        this.sql = "SELECT * FROM \"package\";";
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        this.execute();
+
+            try {
+                while (this.result.next()){
+                    //System.out.println(result.getString("id"));
+                    list.add(this.getItemByToken(result.getString("id")));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+
+        return list;
+    }
+
 
 
 

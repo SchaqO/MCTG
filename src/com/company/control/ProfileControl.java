@@ -29,7 +29,10 @@ public class ProfileControl implements Get, Put{
 
     @Override
     public Response put(Request request) {
-        request.getAuth();
+        String userID = request.getAuth();
+        if(userID == null){
+            return new Response(400,"BAD","NO AUTH");
+        }
         //System.out.println(request.getBody());
         return new Response(200,"OK","User edited");
     }

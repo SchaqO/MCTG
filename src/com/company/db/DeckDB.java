@@ -55,13 +55,14 @@ public class DeckDB extends AbstractDBTable implements DbTable<Deck> {
 
     @Override
     public Deck addItem(Deck item){
-        this.sql = "INSERT INTO "+ this.table + " (\"userToken\", \"cardid1\" , \"cardid2\" , \"cardid3\", \"cardid4\") VALUES(?,?,?,?,?,?)";
+        this.sql = "INSERT INTO "+ this.table + " (\"userToken\", \"cardid1\" , \"cardid2\" , \"cardid3\", \"cardid4\") VALUES(?,?,?,?,?)";
         try {
             this.statement = connection.prepareStatement(this.sql);
             statement.setString(1,item.getUserToken());
             statement.setString(2,item.getCardId1());
-            statement.setString(3,item.getCardId3());
-            statement.setString(4,item.getCardId4());
+            statement.setString(3,item.getCardId2());
+            statement.setString(4,item.getCardId3());
+            statement.setString(5,item.getCardId4());
 
         } catch (SQLException e) {
             e.printStackTrace();

@@ -19,13 +19,19 @@ public class TradingControl implements Get, Post, Delete {
 
     @Override
     public Response get(Request request) {
-        request.getAuth();
+        String userID = request.getAuth();
+        if(userID == null){
+            return new Response(400,"BAD","NO AUTH");
+        }
         return new Response(200,"OK","Trade deal checked");
     }
 
     @Override
     public Response delete(Request request) {
-        request.getAuth();
+        String userID = request.getAuth();
+        if(userID == null){
+            return new Response(400,"BAD","NO AUTH");
+        }
         return new Response(200,"OK","Trade deleted");
     }
 

@@ -11,6 +11,7 @@ public class ScoreControl implements Get {
 
     @Override
     public Response get(Request request) {
+
         if(request.getAuth() == ""){
             return new Response(400,"BAD","NO TOKEN");
         }

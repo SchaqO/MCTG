@@ -32,6 +32,11 @@ public class PackageControl implements Post, Get {
     @Override
     public Response post(Request request) {
 
+        String userID = request.getAuth();
+        if(userID == null){
+            return new Response(400,"BAD","NO AUTH");
+        }
+
         if(!request.getAuth().equals("admin-mtcgToken")) {
             return new Response(400, "BAD", "NO ADMIN");
         };

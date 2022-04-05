@@ -11,6 +11,10 @@ public class TransactionControl implements Post {
 
     @Override
     public Response post(Request request) {
+        String userID = request.getAuth();
+        if(userID == null){
+            return new Response(400,"BAD","NO AUTH");
+        }
 
         if(request.getAuth().equals("")){
             return new Response(400, "BAD", "NO TOKEN");
@@ -25,14 +29,15 @@ public class TransactionControl implements Post {
             return new Response(400, "BAD", "NO USER");
         }
 
-        // TODO: 04-Apr-22 TOKEN PACKAGE ArrayList --> mit allen PAckageIDs aus der Datenbank
-        //  PackageDB -> Arraylist getAllPackgeIDs();
-        if(packageDB.getItemByToken("123") == null ){
+        if(packageDB.getAllPackages() == null) {
             return new Response(400, "BAD", "NO PACKAGE");
         }
 
+        if(packageDB.getAllPackages().size() == 0) {
+            return new Response(400, "BAD", "NO PACKAGE");
+        }
 
-        packageDB.sellPackage(request.getAuth(),"123");
+     packageDB.sellPackage(request.getAuth(),packageDB.getAllPackages().get(0).getId());
 
 
         return new Response(200, "OK", "SOLD");

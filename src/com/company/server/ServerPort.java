@@ -9,7 +9,7 @@ import java.net.Socket;
 /** FERTIG **/
 public class ServerPort implements Runnable{
 
-    private int port = 10002;
+    private int port = 10001;
     private ServerSocket listen;
 
     public void start() {
