@@ -1,5 +1,6 @@
 package com.company.server;
 
+//Antwort Template zurück an den Client (In unserem Fall CURL)
 public class Response {
 
     private int status;

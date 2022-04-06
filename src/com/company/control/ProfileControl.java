@@ -23,14 +23,16 @@ public class ProfileControl implements Get, Put{
             return new Response(400,"BAD","NO PROFILE INFORMATION YET");
         }
 
+       /*if(!request.getRoute().contains(request.getAuth())){
+            return new Response(400,"BAD","NO MATCHING TOKEN AND NAME");
+        }*/
         String route = request.getRoute().replace("/users/","");
         String auth = request.getAuth().replace("-mtcgToken", "");
         if(!route.equals(auth)){
             return new Response(400,"BAD","NO MATCHING TOKEN AND NAME");
         }
 
-
-        return new Response(200,"OK",profile.toString());
+        return new Response(200,"OK", profile.toString());
     }
 
     @Override
@@ -51,7 +53,7 @@ public class ProfileControl implements Get, Put{
 
         ProfileDB profileDB = new ProfileDB();
 
-        profile = profileDB.addItem(profile);
+        profile = profileDB.update(profile);
         if(profile == null) {
             return new Response(400,"BAD","NO PROFILE");
         }

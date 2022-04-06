@@ -4,7 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-//5. This takes the http request and changes it to variables for request (gives back request filled variables) for java to process further
+
+//Hier wird der HTTP request in variablen bzw. Objekten gespeichert damit man in Java weiterarbeiten kann.
 public class RequestBuilder {
 
     public RequestBuilder(){}

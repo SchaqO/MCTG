@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+//Nimmt das HTTP request in einem Buffer
 public class RequestHandler implements Runnable {
 
     private BufferedReader in;

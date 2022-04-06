@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class PackageControl implements Post, Get {
 
     HashGenerator hash = new HashGenerator();
-    String hashID = "22";
+    String hashID = hash.hashString();
 
     Gson gson;
     public PackageControl() {

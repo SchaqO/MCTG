@@ -52,6 +52,8 @@ public class UserControl implements Post, Get {
             Profile profile = Profile.builder()
                     .userToken(newUser.getUserToken())
                     .name(newUser.getUsername())
+                    .image(":)")
+                    .description("Hello world!")
                     .build();
             ProfileDB profileDB = new ProfileDB();
             profileDB.addItem(profile);

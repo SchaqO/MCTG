@@ -6,7 +6,7 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 
-/** FERTIG **/
+//Socket mit Port wird hier erstellt
 public class ServerPort implements Runnable{
 
     private int port = 10001;

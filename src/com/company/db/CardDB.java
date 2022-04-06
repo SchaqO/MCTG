@@ -3,9 +3,7 @@ package com.company.db;
 import com.company.db.repository.DbTable;
 import com.company.model.Deck;
 import com.company.model.Stack;
-import com.company.model.card.AbstractCard;
-import com.company.model.card.CardName;
-import com.company.model.card.MonsterCard;
+import com.company.model.card.*;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,7 +19,19 @@ public class CardDB extends AbstractDBTable implements DbTable<AbstractCard> {
         // if Monster und if Spell
         try {
             if(result.next()){
-                return null;
+                if(CardType.valueOf(result.getString("cardtype")).equals(CardType.MONSTER)){
+                    return new MonsterCard(
+                            result.getString("id"),
+                            CardName.valueOf(result.getString("cardname")),
+                            Integer.valueOf(result.getString("carddmg")),
+                            CardElement.valueOf(result.getString("cardelement"))
+                    );
+                }else return new SpellCard(
+                            result.getString("id"),
+                            CardName.valueOf(result.getString("cardname")),
+                            Integer.valueOf(result.getString("carddmg")),
+                            CardElement.valueOf(result.getString("cardelement"))
+                    );
             }
 
 

@@ -8,6 +8,7 @@ import java.io.*;
 import java.lang.constant.DynamicCallSiteDesc;
 import java.net.Socket;
 
+//Hier werden die HTTP requests aufgenommen, gesplittet und passend zum entsprechendem Router/Funktion weitergeleitet
 public class Router {
 
     Socket clientSocket;

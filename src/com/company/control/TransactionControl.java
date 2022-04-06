@@ -21,11 +21,11 @@ public class TransactionControl implements Post {
         }
 
 
-
         PackageDB packageDB = new PackageDB();
         UserDB userDB = new UserDB();
+        User user = userDB.getItemByToken(request.getAuth());
 
-        if(userDB.getItemByToken(request.getAuth()) == null ){
+        if(user == null ){
             return new Response(400, "BAD", "NO USER");
         }
 
@@ -38,7 +38,9 @@ public class TransactionControl implements Post {
         }
 
         //check coins of user
-        //if()
+        if(user.getCoins() < 5){
+            return new Response(400, "BAD", "NO MONEY");
+        }
 
      packageDB.sellPackage(request.getAuth(),packageDB.getAllPackages().get(0).getId());
 

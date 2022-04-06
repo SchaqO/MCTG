@@ -10,7 +10,7 @@ public class ProfileDB extends AbstractDBTable implements DbTable<Profile> {
 
 
     public ProfileDB(){
-        this.table = "profile";
+        this.table = "\"profile\"";
     }
 
     public Profile profileBuilder(ResultSet result){
@@ -76,7 +76,32 @@ public class ProfileDB extends AbstractDBTable implements DbTable<Profile> {
 
     @Override
     public Profile update(Profile item){
-        return null;
+
+        this.sql = "UPDATE " + this.table +
+                " SET " +
+                "\"userToken\" = ? ," +
+                "\"name\" = ? ," +
+                "\"description\" = ? ," +
+                "\"image\" = ? " +
+                "WHERE \"userToken\" = ?;";
+
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+            statement.setString(1,item.getUserToken());
+            statement.setString(2,item.getName());
+            statement.setString(3,item.getImage());
+            statement.setString(4,item.getDescription());
+            statement.setString(5,item.getUserToken());
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        this.execute();
+        this.close();
+
+        return getItemByToken(item.getUserToken());
     }
+
 
 }

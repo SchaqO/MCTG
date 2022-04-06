@@ -18,9 +18,10 @@ import java.util.Random;
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        //1.
+    //Server startet hier
     Thread server = new Thread((Runnable) new ServerPort());
     server.start();
+
 
     }
 }

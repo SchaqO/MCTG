@@ -3,6 +3,7 @@ package com.company.model;
 import com.company.model.card.AbstractCard;
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Builder(toBuilder = true)
+@Data
 public class Deck {
     @Getter
     @Setter

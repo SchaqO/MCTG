@@ -20,162 +20,260 @@ public class BattleLogic {
         return this.battleStart(battle);
     }
 
-    public Battle battleStart(Battle battle){
+    public Battle battleStart(Battle battle) {
 
 
-    ArrayList<AbstractCard> deckA = new ArrayList<>();
-    ArrayList<AbstractCard> deckB = new ArrayList<>();
+        ArrayList<AbstractCard> deckA = new ArrayList<>();
+        ArrayList<AbstractCard> deckB = new ArrayList<>();
 
-    User userA = battle.getPlayer1();
-    User userB = battle.getPlayer2();
-    UserDB userDB = new UserDB();
-    CardDB cardDB = new CardDB();
+        User userA = battle.getPlayer1();
+        User userB = battle.getPlayer2();
+        UserDB userDB = new UserDB();
+        CardDB cardDB = new CardDB();
 
-    if(userA.getDeck() == null){
-        return null;
-    }
-    if(userB.getDeck() == null){
-        return null;
-    }
-
-    deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId1()));
-    deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId2()));
-    deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId3()));
-    deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId4()));
-
-
-    deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId1()));
-    deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId2()));
-    deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId3()));
-    deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId4()));
-
-
-
-
-    int dmgA = deckB.get(0).getCardDmg();
-    int dmgB = deckA.get(0).getCardDmg();
-
-
-
-    int count = 0;
-    int Player1 = 0;
-    int Player2 = 0;
-
-    int deckANum = 0;
-    int deckBNum = 0;
-    while(count < 101) {
-
-
-
-
-
-
-
-       if(deckA.size() == 0) {
-       break;
-       }
-
-        if(deckB.size() == 0) {
-            break;
+        if (userA.getDeck() == null) {
+            return null;
+        }
+        if (userB.getDeck() == null) {
+            return null;
         }
 
-        // randoGenerator  -->  zahl A
-        deckANum = 3;
+        deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId1()));
+        deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId2()));
+        deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId3()));
+        deckA.add(cardDB.getItemByToken(userA.getDeck().getCardId4()));
 
-        // randoGenerator  -->  zahl B
-        deckBNum = 3;
+
+        deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId1()));
+        deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId2()));
+        deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId3()));
+        deckB.add(cardDB.getItemByToken(userA.getDeck().getCardId4()));
 
 
-        if (deckA.get(deckANum).getCardElement() == CardElement.WATER && deckB.get(deckBNum).getCardElement() == CardElement.FIRE) {
-            loggerBattle.logMsg("Water is more effective against water");
-            if ((dmgA * 2) > (dmgB / 2)) {
-               deckA.add(deckB.get(deckBNum));
-               Player1++;
+        int count = 0;
+        int PlayerA = 0;
+        int PlayerB = 100;
+
+        int deckANum = 0;
+        int deckBNum = 0;
+
+
+        while (count < 101) {
+
+            if (deckA.size() == 0) {
+                break;
             }
-            if ((dmgA * 2) < (dmgB / 2)) {
-                deckB.add(deckA.get(deckANum));
-                Player2++;
+
+            if (deckB.size() == 0) {
+                break;
             }
-        }
-    /*if(elementB == CardElement.WATER.toString() && elementA == CardElement.FIRE.toString()){
-        loggerBattle.logMsg("Water is more effective against water");
-        if((dmgB*2) > (dmgA/2)){
-            //return dmgA;
-        }
-        if((dmgB*2) < (dmgA/2)){
-            //return dmgB;
-        }
-        return null;
-    }*/
+
+            HashGenerator gene = new HashGenerator();
+            // randoGenerator  -->  zahl A
+            deckANum = gene.randomDeckNumber(deckA.size() - 1);
+
+            // randoGenerator  -->  zahl B
+            deckBNum = gene.randomDeckNumber(deckB.size() - 1);
 
 
-        if (nameA == CardName.Goblin.toString() && nameB == CardName.Dragon.toString()) {
-            loggerBattle.logMsg("Goblins cannot attack Dragons because they are too afraid.");
-            //return nameB;
-        }
-        if (nameB == CardName.Goblin.toString() && nameA == CardName.Dragon.toString()) {
-            loggerBattle.logMsg("Goblins cannot attack Dragons because they are too afraid.");
-            //return nameA;
-        }
 
-        if (nameA == CardName.Wizard.toString() && nameB == CardName.Ork.toString()) {
-            loggerBattle.logMsg("Wizards control orcs so Orks cannot damage Wizards.");
-        }
-        if (nameB == CardName.Wizard.toString() && nameA == CardName.Ork.toString()) {
-            loggerBattle.logMsg("Wizards control orcs so Orks cannot damage Wizards.");
-        }
 
-        if (nameA == CardName.Knight.toString() && nameB == CardName.WaterSpell.toString()) {
-            loggerBattle.logMsg("The Knight's armor is too heavy, he instantly drowns.");
-        }
-        if (nameB == CardName.Knight.toString() && nameA == CardName.WaterSpell.toString()) {
-            loggerBattle.logMsg("The Knight's armor is too heavy, he instantly drowns.");
-        }
 
-        if (nameA == CardName.Kraken.toString() && nameB == CardType.SPELL.toString()) {
-            loggerBattle.logMsg("Kraken is immune to spells.");
-        }
-        if (nameB == CardName.Kraken.toString() && nameA == CardType.SPELL.toString()) {
-            loggerBattle.logMsg("Kraken is immune to spells.");
-        }
+            while (true) {
 
-        if (nameA == CardName.FireElves.toString() && nameB == CardName.Dragon.toString()) {
-            loggerBattle.logMsg("FireElves knows the dragon and can therefore evade the attacks");
-        }
-        if (nameB == CardName.FireElves.toString() && nameA == CardName.Dragon.toString()) {
-            loggerBattle.logMsg("FireElves knows the dragon and can therefore evade the attacks");
-        }
+
+                if (deckA.get(deckANum).getCardElement().equals(CardElement.WATER) && deckB.get(deckBNum).getCardElement().equals(CardElement.FIRE)) {
+                    //loggerBattle.logMsg("Water is more effective against water");
+                    if ((deckA.get(deckANum).getCardDmg() * 2) > (deckB.get(deckBNum).getCardDmg() / 2)) {
+                        deckA.add(deckB.get(deckBNum));
+                        deckB.remove(deckBNum);
+                        PlayerA++;
+                        break;
+                    }
+                    if ((deckA.get(deckANum).getCardDmg() * 2) < (deckB.get(deckBNum).getCardDmg() / 2)) {
+                        deckB.add(deckA.get(deckANum));
+                        deckA.remove(deckANum);
+                        PlayerB++;
+                        break;
+                    }
+                }
+                if (deckB.get(deckBNum).getCardElement() == CardElement.WATER && deckA.get(deckANum).getCardElement() == CardElement.FIRE) {
+                    loggerBattle.logMsg("Water is more effective against water");
+                    if ((deckB.get(deckBNum).getCardDmg() * 2) > (deckA.get(deckANum).getCardDmg() / 2)) {
+                        deckB.add(deckA.get(deckANum));
+                        deckA.remove(deckANum);
+                        PlayerB++;
+                        break;
+                    }
+                    if ((deckB.get(deckBNum).getCardDmg() * 2) < (deckA.get(deckANum).getCardDmg() / 2)) {
+                        deckA.add(deckB.get(deckBNum));
+                        deckB.remove(deckBNum);
+                        PlayerA++;
+                        break;
+                    }
+                }
+
+                if (deckA.get(deckANum).getCardElement() == CardElement.NORMAL && deckB.get(deckBNum).getCardElement() == CardElement.WATER) {
+                    loggerBattle.logMsg("Water has no effect on neutrality, normal wins.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardElement() == CardElement.NORMAL && deckA.get(deckANum).getCardElement() == CardElement.WATER) {
+                    loggerBattle.logMsg("Water has no effect on neutrality, normal wins.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+                if (deckA.get(deckANum).getCardElement() == CardElement.FIRE && deckB.get(deckBNum).getCardElement() == CardElement.NORMAL) {
+                    loggerBattle.logMsg("Fire is better than nothing! Fire wins.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardElement() == CardElement.FIRE && deckA.get(deckANum).getCardElement() == CardElement.NORMAL) {
+                    loggerBattle.logMsg("Fire is better than nothing! Fire wins.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+
+                if (deckA.get(deckANum).getCardName() == CardName.Dragon && deckB.get(deckBNum).getCardName() == CardName.Goblin) {
+                    loggerBattle.logMsg("Goblins cannot attack Dragons because they are too afraid.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardName() == CardName.Dragon && deckA.get(deckANum).getCardName() == CardName.Goblin) {
+                    loggerBattle.logMsg("Goblins cannot attack Dragons because they are too afraid.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+                if (deckA.get(deckANum).getCardName() == CardName.Wizard && deckB.get(deckBNum).getCardName() == CardName.Ork) {
+                    loggerBattle.logMsg("Ork cannot damage Wizard because he is being controlled.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardName() == CardName.Wizard && deckA.get(deckANum).getCardName() == CardName.Ork) {
+                    loggerBattle.logMsg("Ork cannot damage Wizard because he is being controlled.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+                if (deckA.get(deckANum).getCardName() == CardName.WaterSpell && deckB.get(deckBNum).getCardName() == CardName.Knight) {
+                    loggerBattle.logMsg("Knights armor is too heavy so he is drowning in water.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardName() == CardName.WaterSpell && deckA.get(deckANum).getCardName() == CardName.Knight) {
+                    loggerBattle.logMsg("Knights armor is too heavy so he is drowning in water.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+                if (deckA.get(deckANum).getCardName() == CardName.Kraken && deckB.get(deckBNum).getCardtype().toString().contains("Spell")) {
+                    loggerBattle.logMsg("Spells have no effect on Kraken.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardName() == CardName.Kraken && deckA.get(deckANum).getCardtype().toString().contains("Spell")) {
+                    loggerBattle.logMsg("Spells have no effect on Kraken.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+                if (deckA.get(deckANum).getCardName() == CardName.FireElves && deckB.get(deckBNum).getCardName() == CardName.Dragon) {
+                    loggerBattle.logMsg("Knights armor is too heavy so he is drowning in water.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardName() == CardName.FireElves && deckA.get(deckANum).getCardName() == CardName.Dragon) {
+                    loggerBattle.logMsg("Knights armor is too heavy so he is drowning in water.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+
+
+                if (deckA.get(deckANum).getCardDmg() == deckB.get(deckBNum).getCardDmg()) {
+                    loggerBattle.logMsg("Same power! Both players get a point");
+                    PlayerA++;
+                    PlayerB++;
+                }
+                if (deckA.get(deckANum).getCardDmg() > deckB.get(deckBNum).getCardDmg()) {
+                    loggerBattle.logMsg("PlayerA has more damage. Point to PlayerA");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckA.get(deckANum).getCardDmg() < deckB.get(deckBNum).getCardDmg()) {
+                    loggerBattle.logMsg("PlayerB has more damage. Point to PlayerB");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+
+                PlayerA++;
+                PlayerB++;
+                break;
+            }
 
 
 
         count++;
+
     }
 
+        //GEWINNER WIRD ENTSCHIEDEN
+        battle.setRound(count);
+        if(PlayerA > PlayerB){
+            battle.setWinner(battle.getPlayer1());
+            userA.setElo(userA.getElo() + 10);
+            userB.setElo(userB.getElo() - 5);
+            loggerBattle.logMsg("WINNER "+userA.getUsername());
+        }else{
+            battle.setWinner(battle.getPlayer2());
+            userB.setElo(userB.getElo() + 10);
+            userA.setElo(userA.getElo() - 5);
+            loggerBattle.logMsg("WINNER "+userB.getUsername());
+        }
+
+        userDB.update(userB);
+        userDB.update(userA);
+        battle.setPlayer1(userA);
+        battle.setPlayer2(userB);
 
 
-if(Player1 > Player2){
 
-    battle.setWinner(battle.getPlayer1());
-}else{
-    battle.setWinner(battle.getPlayer2());
-
-}
-
-        return battle;
+            return battle;
     }
-
-
-
-
-
-
-    public AbstractCard logic(AbstractCard card1, AbstractCard card2){
-        /*if(card1 == CardName.Dragon.toString() && card2 == CardName.Goblin.toString()){
-            loggerBattle.logMsg("Goblins are too afraid of Dragons to attack");
-            return card1;
-        }*/
-        return null;
-    }
-
 
 }
