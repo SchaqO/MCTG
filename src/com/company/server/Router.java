@@ -27,10 +27,10 @@ public class Router {
 
         switch (request.getRoute()){
             case "/users": return new UserControl().post(request);
-            case "/sessions": return new SessionControl().post(request);
+            case "/sessions": return new UserControl().get(request);
             case "/packages": return new PackageControl().post(request);
             case "/transactions/packages": return new TransactionControl().post(request);
-            case "/tradings": return new UserControl().post(request);
+            case "/tradings": return new SessionControl().post(request);
             case "/battles": return new BattleControl().post(request);
 
         }

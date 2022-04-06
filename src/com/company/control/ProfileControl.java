@@ -20,19 +20,43 @@ public class ProfileControl implements Get, Put{
         Profile profile = profileDB.getItemByToken(request.getAuth());
 
         if(profile == null){
-            return new Response(400,"BAD","NO PROFILE");
+            return new Response(400,"BAD","NO PROFILE INFORMATION YET");
+        }
+
+        String route = request.getRoute().replace("/users/","");
+        String auth = request.getAuth().replace("-mtcgToken", "");
+        if(!route.equals(auth)){
+            return new Response(400,"BAD","NO MATCHING TOKEN AND NAME");
         }
 
 
-        return new Response(200,"OK",profile.getImage() + " " + profile.getDescription() + " " +profile.getName());
+        return new Response(200,"OK",profile.toString());
     }
 
     @Override
     public Response put(Request request) {
+        UserDB userDB = new UserDB();
         String userID = request.getAuth();
+
+        if(userDB.getItemByToken(userID) == null){
+            return new Response(400,"BAD","NO PROFILE");
+        }
         if(userID == null){
             return new Response(400,"BAD","NO AUTH");
         }
+
+        Profile profile = gson.fromJson(request.getBody(), Profile.class);
+        profile.setUserToken(userID);
+
+
+        ProfileDB profileDB = new ProfileDB();
+
+        profile = profileDB.addItem(profile);
+        if(profile == null) {
+            return new Response(400,"BAD","NO PROFILE");
+        }
+
+
         //System.out.println(request.getBody());
         return new Response(200,"OK","User edited");
     }

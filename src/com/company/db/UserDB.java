@@ -2,6 +2,7 @@ package com.company.db;
 
 import com.company.db.repository.DbTable;
 import com.company.model.User;
+import com.company.util.HashGenerator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -53,12 +54,11 @@ public class UserDB extends AbstractDBTable implements DbTable<User> {
     }
 
 
-    public User getItemByData(String username, String password) {
-        this.sql = "SELECT * FROM "+this.table+" WHERE \"username\" = ? AND \"password\" = ?;";
+    public User getItemByUsername(String username) {
+        this.sql = "SELECT * FROM "+this.table+" WHERE \"username\" = ? ;";
         try {
             this.statement = connection.prepareStatement(this.sql);
             this.statement.setString(1,username);
-            this.statement.setString(2,password);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -72,12 +72,13 @@ public class UserDB extends AbstractDBTable implements DbTable<User> {
 
     @Override
     public User addItem(User item){
+        HashGenerator hashGenerator = new HashGenerator();
         this.sql = "INSERT INTO \"player\" (\"userToken\", \"username\" , \"password\" , coins, elo, status) VALUES(?,?,?,?,?,?)";
         try {
             this.statement = connection.prepareStatement(this.sql);
             statement.setString(1,item.getUserToken());
             statement.setString(2,item.getUsername());
-            statement.setString(3,item.getPassword());
+            statement.setString(3, hashGenerator.hashMe(item.getPassword()));
             statement.setString(4,item.getCoins()+"");
             statement.setString(5,item.getElo()+"");
             statement.setString(6,item.isStatus()+"");
@@ -141,6 +142,10 @@ public class UserDB extends AbstractDBTable implements DbTable<User> {
         this.close();
 
         return true;
+    }
+
+    public boolean checkPw(String input, String hashString){
+        return hashString.equals(new HashGenerator().hashMe(input));
     }
 
 }

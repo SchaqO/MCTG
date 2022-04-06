@@ -10,8 +10,6 @@ import com.company.server.Request;
 import com.company.server.Response;
 import com.google.gson.Gson;
 
-import javax.xml.namespace.QName;
-
 //9.
 public class UserControl implements Post, Get {
 
@@ -42,6 +40,7 @@ public class UserControl implements Post, Get {
         UserDB userDB = new UserDB();
 
         // WENN ES SCHON EINEN EINTRAG GIBT
+
         if(userDB.getItemByToken(newUser.getUserToken())!= null){ return new Response(400,"BAD","FAILED");}
 
 
@@ -63,7 +62,25 @@ public class UserControl implements Post, Get {
 
     @Override
     public Response get(Request request) {
-        return new Response(400,"BAD","FAILED");
+        User jsonUser = gson.fromJson(request.getBody(), User.class);
+
+        if(jsonUser == null){
+            return new Response(400,"BAD","OK");
+        }
+
+        UserDB userDB = new UserDB();
+        User user = userDB.getItemByUsername(jsonUser.getUsername());
+        if(user == null){
+            return new Response(400,"BAD","FAILED");
+        }
+        Boolean test = userDB.checkPw(jsonUser.getPassword(),user.getPassword());
+        if(!test){
+            return new Response(400,"BAD","FAILED");
+
+        }
+
+            return new Response(400,"OK",user.toString());
+
     }
 
 }

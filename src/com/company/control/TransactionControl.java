@@ -37,6 +37,9 @@ public class TransactionControl implements Post {
             return new Response(400, "BAD", "NO PACKAGE");
         }
 
+        //check coins of user
+        //if()
+
      packageDB.sellPackage(request.getAuth(),packageDB.getAllPackages().get(0).getId());
 
 

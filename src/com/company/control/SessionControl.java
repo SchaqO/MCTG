@@ -1,8 +1,6 @@
 package com.company.control;
 
 import com.company.control.respository.Post;
-import com.company.db.UserDB;
-import com.company.model.User;
 import com.company.server.Request;
 import com.company.server.Response;
 import com.google.gson.Gson;
@@ -13,25 +11,24 @@ public class SessionControl implements Post {
 
     @Override
     public Response post(Request request) {
-        //10.
-        // BODY --> JSON <-> JAVA OBJ
-
-        User currentUser = gson.fromJson(request.getBody(), User.class);
-
-        if(currentUser == null){
-            return new Response(400,"BAD","FAILED");
+     //   //10.
+     //   // BODY --> JSON <-> JAVA OBJ
+//
+     //   User currentUser = gson.fromJson(request.getBody(), User.class);
+//
+     //   if(currentUser == null){
+     //       return new Response(400,"BAD","FAILED");
+     //   }
+//
+     //   //DATABASE
+     //   UserDB userDB = new UserDB();
+     //   currentUser = userDB.getItemByUsername(currentUser.getUsername(),currentUser.getPassword());
+//
+     //   // WENN ES SCHON EINEN EINTRAG GIBT
+     //   if(currentUser == null){ return new Response(400,"BAD","USER NOT FOUND");}
+     //   else{
+            return new Response(200,"OK","t");
         }
 
-        //DATABASE
-        UserDB userDB = new UserDB();
-        currentUser = userDB.getItemByData(currentUser.getUsername(),currentUser.getPassword());
-
-        // WENN ES SCHON EINEN EINTRAG GIBT
-        if(currentUser == null){ return new Response(400,"BAD","USER NOT FOUND");}
-        else{
-            return new Response(200,"OK",currentUser.getUserToken());
-        }
-
-    }
 
 }

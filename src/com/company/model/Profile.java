@@ -18,12 +18,12 @@ public class Profile {
     private String name;
 
     @Getter
-    @SerializedName("Description")
+    @SerializedName("Bio")
     @Builder.Default
-    private String description = "about me: i like tennis";
+    private String description;
 
     @Getter
     @SerializedName("Image")
     @Builder.Default
-    private String image = "D:";
+    private String image;
 }
