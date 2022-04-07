@@ -6,6 +6,8 @@ import com.company.util.HashGenerator;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 public class UserDB extends AbstractDBTable implements DbTable<User> {
 
@@ -147,5 +149,24 @@ public class UserDB extends AbstractDBTable implements DbTable<User> {
     public boolean checkPw(String input, String hashString){
         return hashString.equals(new HashGenerator().hashMe(input));
     }
+
+    /*
+    public String scoreBoard(String user){
+
+        this.sql = "SELECT * FROM " + this.table + "WHERE \"userToken\" = ? ORDER BY elo DESC;";
+
+        try {
+            this.statement = connection.prepareStatement(this.sql);
+            statement.setString(1, user);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        String scoreString = this.statement.toString();
+        this.execute();
+        this.close();
+
+        return scoreString;
+    }
+    */
 
 }

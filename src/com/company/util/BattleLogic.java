@@ -142,6 +142,34 @@ public class BattleLogic {
                     PlayerB++;
                     break;
                 }
+                if (deckA.get(deckANum).getCardElement() == CardElement.ICE && deckB.get(deckBNum).getCardElement() == CardElement.WATER) {
+                    loggerBattle.logMsg("Ice freezes water, Ice wins.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardElement() == CardElement.ICE && deckA.get(deckANum).getCardElement() == CardElement.WATER) {
+                    loggerBattle.logMsg("Ice freezes water, Ice wins.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
+                if (deckA.get(deckANum).getCardElement() == CardElement.POISON && deckB.get(deckBNum).getCardElement() == CardElement.NORMAL) {
+                    loggerBattle.logMsg("Poison beats neutrality. Poison wins.");
+                    deckA.add(deckB.get(deckBNum));
+                    deckB.remove(deckBNum);
+                    PlayerA++;
+                    break;
+                }
+                if (deckB.get(deckBNum).getCardElement() == CardElement.POISON && deckA.get(deckANum).getCardElement() == CardElement.NORMAL) {
+                    loggerBattle.logMsg("Poison beats neutrality. Poison wins.");
+                    deckB.add(deckA.get(deckANum));
+                    deckA.remove(deckANum);
+                    PlayerB++;
+                    break;
+                }
 
 
                 if (deckA.get(deckANum).getCardName() == CardName.Dragon && deckB.get(deckBNum).getCardName() == CardName.Goblin) {

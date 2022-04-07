@@ -6,6 +6,9 @@ import com.company.model.User;
 import com.company.server.Request;
 import com.company.server.Response;
 
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+
 public class ScoreControl implements Get {
 
 
@@ -25,4 +28,5 @@ public class ScoreControl implements Get {
             return new Response(200,"OK",user.getElo()+"");
         }
     }
+
 }

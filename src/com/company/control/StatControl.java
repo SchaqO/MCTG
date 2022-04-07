@@ -21,7 +21,7 @@ public class StatControl implements Get {
         if(user == null){
             return new Response(400,"BAD","Show Stats here");
         }else{
-            return new Response(200,"OK",user.isStatus()+"");
+            return new Response(200,"OK",user.getElo()+"");
         }
     }
 }
